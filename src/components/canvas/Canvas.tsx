@@ -1,19 +1,29 @@
-import { useCallback } from 'react'
+import { useCallback, useEffect } from 'react'
 import { ReactFlow, Background, Controls, useNodesState, useEdgesState, addEdge } from '@xyflow/react'
 import type { Connection } from '@xyflow/react'
 import { useDataFlowStore } from '../../store/useStore'
 import { nodeTypes } from './nodeTypes'
 import type { FlowNode, FlowEdge } from '../../types'
+import { useTheme } from '@/hooks/useTheme'
 
 export default function Canvas() {
   const { currentFlow, setSelectedNode } = useDataFlowStore()
+  const { theme } = useTheme();
 
   // Convert our flow data to React Flow format
   const initialNodes: FlowNode[] = currentFlow?.nodes || []
   const initialEdges: FlowEdge[] = currentFlow?.edges || []
 
-  const [nodes, , onNodesChange] = useNodesState(initialNodes)
+  const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes)
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges)
+
+  // Sync local state with store when currentFlow changes
+  useEffect(() => {
+    if (currentFlow) {
+      setNodes(currentFlow.nodes)
+      setEdges(currentFlow.edges)
+    }
+  }, [currentFlow, setNodes, setEdges])
 
   const onConnect = useCallback(
     (params: Connection) => setEdges((eds) => addEdge(params, eds)),
@@ -36,9 +46,9 @@ export default function Canvas() {
   }
 
   return (
-    <div className="h-full bg-gray-50 dark:bg-gray-900">
+    <div className="h-full bg-gray-50 dark:bg-gray-900 flex flex-col">
       {/* Canvas Header */}
-      <div className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 px-4 py-2">
+      <div className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 px-4 py-2 flex-shrink-0">
         <h3 className="text-sm font-medium text-gray-900 dark:text-white">
           Flow Diagram
         </h3>
@@ -48,7 +58,7 @@ export default function Canvas() {
       </div>
 
       {/* React Flow Canvas */}
-      <div className="h-full">
+      <div className="flex-1 min-h-0">
         <ReactFlow
           nodes={nodes}
           edges={edges}
@@ -58,9 +68,11 @@ export default function Canvas() {
           onNodeClick={onNodeClick}
           nodeTypes={nodeTypes}
           fitView
-          attributionPosition="bottom-left"
         >
-          <Background />
+          <Background 
+            color={theme === "dark"  ? '#ffffff' : '#000000'}
+            gap={20}
+          />
           <Controls />
         </ReactFlow>
       </div>

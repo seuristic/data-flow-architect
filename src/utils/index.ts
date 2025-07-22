@@ -15,15 +15,21 @@ export const examplePrompts: ExamplePrompt[] = [
   },
   {
     id: '2',
-    title: 'Sync Salesforce to Mailchimp',
+    title: 'Sync Salesforce contacts to Mailchimp',
     description: 'Automatically sync contacts between CRM and email marketing',
     prompt: 'Sync Salesforce contacts and leads to Mailchimp for email campaigns'
   },
   {
     id: '3',
-    title: 'Stream Stripe to Google Sheets',
-    description: 'Real-time payment data streaming to spreadsheets',
-    prompt: 'Stream Stripe payment transactions to Google Sheets for reporting'
+    title: 'Get PostgreSQL users and send to a webhook',
+    description: 'Extract user data and send to external webhook',
+    prompt: 'Get PostgreSQL users and send to a webhook'
+  },
+  {
+    id: '4',
+    title: 'Analyze Stripe payments in Google Sheets',
+    description: 'Real-time payment data analysis in spreadsheets',
+    prompt: 'Analyze Stripe payments in Google Sheets'
   }
 ]
 

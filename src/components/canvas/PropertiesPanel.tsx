@@ -10,9 +10,22 @@ export default function PropertiesPanel() {
 
   if (!currentFlow || !selectedNodeId) {
     return (
-      <div className="h-full bg-white dark:bg-gray-800 border-l border-gray-200 dark:border-gray-700 p-4">
-        <div className="text-center text-gray-500 dark:text-gray-400">
-          <p>Select a node to view its properties</p>
+      <div className="h-full bg-white dark:bg-gray-800 border-l border-gray-200 dark:border-gray-700 flex flex-col">
+        {/* Properties Header */}
+        <div className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 px-4 py-2 flex-shrink-0">
+          <h3 className="text-sm font-medium text-gray-900 dark:text-white">
+            Properties
+          </h3>
+          <p className="text-xs text-gray-500 dark:text-gray-400">
+            Configure selected node
+          </p>
+        </div>
+        
+        {/* Empty State */}
+        <div className="flex-1 flex items-center justify-center p-4">
+          <div className="text-center text-gray-500 dark:text-gray-400">
+            <p>Select a node to view its properties</p>
+          </div>
         </div>
       </div>
     )
@@ -36,8 +49,19 @@ export default function PropertiesPanel() {
   }
 
   return (
-    <div className="h-full bg-white dark:bg-gray-800 border-l border-gray-200 dark:border-gray-700 overflow-y-auto">
-      <div className="p-4">
+    <div className="h-full bg-white dark:bg-gray-800 border-l border-gray-200 dark:border-gray-700 flex flex-col">
+      {/* Properties Header */}
+      <div className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 px-4 py-2 flex-shrink-0">
+        <h3 className="text-sm font-medium text-gray-900 dark:text-white">
+          Properties
+        </h3>
+        <p className="text-xs text-gray-500 dark:text-gray-400">
+          Configure selected node
+        </p>
+      </div>
+
+      {/* Properties Content */}
+      <div className="flex-1 overflow-y-auto p-4">
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
