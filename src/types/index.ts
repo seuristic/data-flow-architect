@@ -1,4 +1,7 @@
-import type { Node as ReactFlowNode, Edge as ReactFlowEdge } from '@xyflow/react'
+import type {
+  Node as ReactFlowNode,
+  Edge as ReactFlowEdge,
+} from '@xyflow/react'
 
 // Message types for chat interface
 export interface Message {
@@ -68,4 +71,4 @@ export interface ExamplePrompt {
   title: string
   description: string
   prompt: string
-} 
+}

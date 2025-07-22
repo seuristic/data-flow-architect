@@ -2,7 +2,13 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card'
 import { Moon, Sun } from 'lucide-react'
 import { examplePrompts } from '@/utils'
 import { useDataFlowStore } from '@/store/useStore'
@@ -36,8 +42,14 @@ export default function LandingPage() {
           <div className="flex justify-between items-center h-16">
             {/* Logo */}
             <div className="flex items-center gap-3">
-              <img src={nexlaLogo} alt="Nexla" className="w-8 h-8 object-contain" />
-              <span className="text-xl font-bold text-gray-900 dark:text-white">Nexla</span>
+              <img
+                src={nexlaLogo}
+                alt="Nexla"
+                className="w-8 h-8 object-contain"
+              />
+              <span className="text-xl font-bold text-gray-900 dark:text-white">
+                Nexla
+              </span>
             </div>
 
             {/* Theme Toggle */}
@@ -47,7 +59,11 @@ export default function LandingPage() {
               onClick={toggleTheme}
               className="flex items-center gap-2"
             >
-              {theme === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+              {theme === 'dark' ? (
+                <Sun className="w-4 h-4" />
+              ) : (
+                <Moon className="w-4 h-4" />
+              )}
             </Button>
           </div>
         </div>
@@ -61,8 +77,9 @@ export default function LandingPage() {
               Data Flow Architect
             </h1>
             <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-8">
-              Describe your data integration needs in plain English and watch as we create 
-              interactive flow diagrams that visualize your data pipelines.
+              Describe your data integration needs in plain English and watch as
+              we create interactive flow diagrams that visualize your data
+              pipelines.
             </p>
           </div>
 
@@ -70,9 +87,12 @@ export default function LandingPage() {
           <div className="max-w-3xl w-full mx-auto mb-16">
             <Card className="shadow-lg bg-white/80 backdrop-blur-sm dark:bg-gray-800/80">
               <CardHeader className="text-center">
-                <CardTitle className="text-2xl">What data flow would you like to create?</CardTitle>
+                <CardTitle className="text-2xl">
+                  What data flow would you like to create?
+                </CardTitle>
                 <CardDescription>
-                  Describe your data integration requirements and we'll build a visual flow diagram for you
+                  Describe your data integration requirements and we'll build a
+                  visual flow diagram for you
                 </CardDescription>
               </CardHeader>
               <CardContent>
@@ -82,7 +102,7 @@ export default function LandingPage() {
                       type="text"
                       placeholder="e.g., Connect Shopify orders to BigQuery for analytics..."
                       value={prompt}
-                      onChange={(e) => setPrompt(e.target.value)}
+                      onChange={e => setPrompt(e.target.value)}
                       className="flex-1 text-lg"
                       required
                     />
@@ -101,18 +121,20 @@ export default function LandingPage() {
             Try these examples
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 place-content-center lg:grid-cols-3 gap-4 justify-items-center">
-            {examplePrompts.map((example) => (
+            {examplePrompts.map(example => (
               <Card
-                key={example.id} 
+                key={example.id}
                 className="justify-between w-full cursor-pointer hover:shadow-lg transition-shadow duration-200 bg-white/80 backdrop-blur-sm dark:bg-gray-800/80"
               >
                 <CardHeader>
                   <CardTitle className="text-base">{example.title}</CardTitle>
-                  <CardDescription className="text-sm">{example.description}</CardDescription>
+                  <CardDescription className="text-sm">
+                    {example.description}
+                  </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <Button 
-                    variant="outline" 
+                  <Button
+                    variant="outline"
                     size="sm"
                     className="w-full"
                     onClick={() => handleExampleClick(example.prompt)}
@@ -134,4 +156,4 @@ export default function LandingPage() {
       </div>
     </div>
   )
-} 
+}

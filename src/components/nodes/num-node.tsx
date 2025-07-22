@@ -3,33 +3,33 @@ import {
   type NodeProps,
   Position,
   useReactFlow,
-} from '@xyflow/react';
-import { useState } from 'react';
+} from '@xyflow/react'
+import { useState } from 'react'
 
-import { BaseNode, BaseNodeHeader, BaseNodeHeaderTitle } from '../base-node';
-import { LabeledHandle } from '../labeled-handle';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
+import { BaseNode, BaseNodeHeader, BaseNodeHeaderTitle } from '../base-node'
+import { LabeledHandle } from '../labeled-handle'
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
-import { MoreHorizontal } from 'lucide-react';
+} from '@/components/ui/dropdown-menu'
+import { MoreHorizontal } from 'lucide-react'
 
 export type NumNode = Node<{
-  value: number;
-}>;
+  value: number
+}>
 
 export function NumNode({ id, data }: NodeProps<NumNode>) {
-  const { updateNodeData } = useReactFlow();
-  const [value, setValue] = useState(data.value);
+  const { updateNodeData } = useReactFlow()
+  const [value, setValue] = useState(data.value)
 
   const updateValue = (newValue: number) => {
-    setValue(newValue);
-    updateNodeData(id, { value: newValue });
-  };
+    setValue(newValue)
+    updateNodeData(id, { value: newValue })
+  }
 
   return (
     <BaseNode className="w-32">
@@ -51,7 +51,7 @@ export function NumNode({ id, data }: NodeProps<NumNode>) {
         <Input
           type="number"
           value={value}
-          onChange={(e) => updateValue(Number(e.target.value))}
+          onChange={e => updateValue(Number(e.target.value))}
           className="text-center"
         />
         <div className="flex gap-1">
@@ -76,5 +76,5 @@ export function NumNode({ id, data }: NodeProps<NumNode>) {
 
       <LabeledHandle title="out" type="source" position={Position.Right} />
     </BaseNode>
-  );
-} 
+  )
+}

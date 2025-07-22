@@ -28,17 +28,20 @@ A modern React application built with Vite, TypeScript, Tailwind CSS v4, Zustand
 ## 📦 Installation
 
 1. Clone the repository:
+
 ```bash
 git clone <repository-url>
 cd data-flow-architect
 ```
 
 2. Install dependencies:
+
 ```bash
 npm install
 ```
 
 3. Start the development server:
+
 ```bash
 npm run dev
 ```

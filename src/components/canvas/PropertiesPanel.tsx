@@ -1,12 +1,23 @@
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card'
 import { useDataFlowStore } from '@/store/useStore'
 import { getNodeStatusColor } from '@/utils'
 import type { NodeStatus } from '@/types'
 
 export default function PropertiesPanel() {
-  const { currentFlow, selectedNodeId, updateNodeStatus, updateNodeConfiguration } = useDataFlowStore()
+  const {
+    currentFlow,
+    selectedNodeId,
+    updateNodeStatus,
+    updateNodeConfiguration,
+  } = useDataFlowStore()
 
   if (!currentFlow || !selectedNodeId) {
     return (
@@ -20,7 +31,7 @@ export default function PropertiesPanel() {
             Configure selected node
           </p>
         </div>
-        
+
         {/* Empty State */}
         <div className="flex-1 flex items-center justify-center p-4">
           <div className="text-center text-gray-500 dark:text-gray-400">
@@ -31,7 +42,9 @@ export default function PropertiesPanel() {
     )
   }
 
-  const selectedNode = currentFlow.nodes.find(node => node.id === selectedNodeId)
+  const selectedNode = currentFlow.nodes.find(
+    node => node.id === selectedNodeId
+  )
   if (!selectedNode) return null
 
   const nodeData = selectedNode.data
@@ -44,7 +57,7 @@ export default function PropertiesPanel() {
     const currentConfig = nodeData.configuration || {}
     updateNodeConfiguration(selectedNodeId, {
       ...currentConfig,
-      [key]: value
+      [key]: value,
     })
   }
 
@@ -65,11 +78,14 @@ export default function PropertiesPanel() {
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
-              <div className={`w-4 h-4 rounded-full ${getNodeStatusColor(nodeData.status)}`} />
+              <div
+                className={`w-4 h-4 rounded-full ${getNodeStatusColor(nodeData.status)}`}
+              />
               {nodeData.label}
             </CardTitle>
             <CardDescription>
-              {nodeData.type.charAt(0).toUpperCase() + nodeData.type.slice(1)} Node
+              {nodeData.type.charAt(0).toUpperCase() + nodeData.type.slice(1)}{' '}
+              Node
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
@@ -83,7 +99,9 @@ export default function PropertiesPanel() {
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-500">Status:</span>
-                  <span className="font-medium capitalize">{nodeData.status}</span>
+                  <span className="font-medium capitalize">
+                    {nodeData.status}
+                  </span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-500">Position:</span>
@@ -98,7 +116,9 @@ export default function PropertiesPanel() {
             <div>
               <h4 className="text-sm font-medium mb-2">Status</h4>
               <div className="grid grid-cols-2 gap-2">
-                {(['pending', 'partial', 'complete', 'error'] as NodeStatus[]).map((status) => (
+                {(
+                  ['pending', 'partial', 'complete', 'error'] as NodeStatus[]
+                ).map(status => (
                   <Button
                     key={status}
                     variant={nodeData.status === status ? 'default' : 'outline'}
@@ -120,7 +140,7 @@ export default function PropertiesPanel() {
                   <label className="text-xs text-gray-500">Name</label>
                   <Input
                     value={(nodeData.configuration?.name as string) || ''}
-                    onChange={(e) => handleConfigChange('name', e.target.value)}
+                    onChange={e => handleConfigChange('name', e.target.value)}
                     placeholder="Enter node name"
                     className="text-sm"
                   />
@@ -128,8 +148,12 @@ export default function PropertiesPanel() {
                 <div>
                   <label className="text-xs text-gray-500">Description</label>
                   <Input
-                    value={(nodeData.configuration?.description as string) || ''}
-                    onChange={(e) => handleConfigChange('description', e.target.value)}
+                    value={
+                      (nodeData.configuration?.description as string) || ''
+                    }
+                    onChange={e =>
+                      handleConfigChange('description', e.target.value)
+                    }
                     placeholder="Enter description"
                     className="text-sm"
                   />
@@ -138,8 +162,12 @@ export default function PropertiesPanel() {
                   <div>
                     <label className="text-xs text-gray-500">Source Type</label>
                     <Input
-                      value={(nodeData.configuration?.sourceType as string) || ''}
-                      onChange={(e) => handleConfigChange('sourceType', e.target.value)}
+                      value={
+                        (nodeData.configuration?.sourceType as string) || ''
+                      }
+                      onChange={e =>
+                        handleConfigChange('sourceType', e.target.value)
+                      }
                       placeholder="e.g., Database, API, File"
                       className="text-sm"
                     />
@@ -147,10 +175,17 @@ export default function PropertiesPanel() {
                 )}
                 {nodeData.type === 'destination' && (
                   <div>
-                    <label className="text-xs text-gray-500">Destination Type</label>
+                    <label className="text-xs text-gray-500">
+                      Destination Type
+                    </label>
                     <Input
-                      value={(nodeData.configuration?.destinationType as string) || ''}
-                      onChange={(e) => handleConfigChange('destinationType', e.target.value)}
+                      value={
+                        (nodeData.configuration?.destinationType as string) ||
+                        ''
+                      }
+                      onChange={e =>
+                        handleConfigChange('destinationType', e.target.value)
+                      }
                       placeholder="e.g., Warehouse, API, File"
                       className="text-sm"
                     />
@@ -158,10 +193,16 @@ export default function PropertiesPanel() {
                 )}
                 {nodeData.type === 'transform' && (
                   <div>
-                    <label className="text-xs text-gray-500">Transform Type</label>
+                    <label className="text-xs text-gray-500">
+                      Transform Type
+                    </label>
                     <Input
-                      value={(nodeData.configuration?.transformType as string) || ''}
-                      onChange={(e) => handleConfigChange('transformType', e.target.value)}
+                      value={
+                        (nodeData.configuration?.transformType as string) || ''
+                      }
+                      onChange={e =>
+                        handleConfigChange('transformType', e.target.value)
+                      }
                       placeholder="e.g., Filter, Map, Aggregate"
                       className="text-sm"
                     />
@@ -187,4 +228,4 @@ export default function PropertiesPanel() {
       </div>
     </div>
   )
-} 
+}

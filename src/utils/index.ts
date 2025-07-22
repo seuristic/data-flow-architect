@@ -9,23 +9,27 @@ export const examplePrompts: ExamplePrompt[] = [
     id: '1',
     title: 'Connect Shopify to BigQuery',
     description: 'Sync your e-commerce data to Google BigQuery for analytics',
-    prompt: 'Connect Shopify orders and customers to BigQuery for data analysis'
+    prompt:
+      'Connect Shopify orders and customers to BigQuery for data analysis',
   },
   {
     id: '2',
     title: 'Sync Salesforce contacts to Mailchimp',
     description: 'Automatically sync contacts between CRM and email marketing',
-    prompt: 'Sync Salesforce contacts and leads to Mailchimp for email campaigns'
+    prompt:
+      'Sync Salesforce contacts and leads to Mailchimp for email campaigns',
   },
   {
     id: '3',
     title: 'Get PostgreSQL users and send to a webhook',
     description: 'Extract user data and send to external webhook',
-    prompt: 'Get PostgreSQL users and send to a webhook'
-  }
+    prompt: 'Get PostgreSQL users and send to a webhook',
+  },
 ]
 
-export const getNodeTypeColor = (type: 'source' | 'transform' | 'destination'): string => {
+export const getNodeTypeColor = (
+  type: 'source' | 'transform' | 'destination'
+): string => {
   switch (type) {
     case 'source':
       return 'bg-blue-500'
@@ -38,7 +42,9 @@ export const getNodeTypeColor = (type: 'source' | 'transform' | 'destination'): 
   }
 }
 
-export const getNodeStatusColor = (status: 'pending' | 'partial' | 'complete' | 'error'): string => {
+export const getNodeStatusColor = (
+  status: 'pending' | 'partial' | 'complete' | 'error'
+): string => {
   switch (status) {
     case 'pending':
       return 'bg-orange-500'
@@ -55,4 +61,4 @@ export const getNodeStatusColor = (status: 'pending' | 'partial' | 'complete' | 
 
 export const formatTimestamp = (date: Date): string => {
   return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
-} 
+}

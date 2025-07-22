@@ -1,6 +1,6 @@
-@import "tailwindcss";
-@import "tw-animate-css";
-@import "@xyflow/react/dist/style.css";
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import '@xyflow/react/dist/style.css';
 
 @custom-variant dark (&:is(.dark *));
 
@@ -115,19 +115,21 @@
   * {
     @apply border-border outline-ring/50;
   }
-  
-  html, body {
+
+  html,
+  body {
     @apply text-foreground;
     background: linear-gradient(135deg, #eff6ff 0%, #e0e7ff 100%);
     min-height: 100vh;
     background-attachment: fixed;
   }
-  
-  html.dark, .dark body {
+
+  html.dark,
+  .dark body {
     background: linear-gradient(135deg, #111827 0%, #1f2937 100%);
     background-attachment: fixed;
   }
-  
+
   #root {
     min-height: 100vh;
     background: inherit;

@@ -8,12 +8,15 @@ interface DataFlowStore extends AppState {
   setCurrentFlow: (flow: FlowDiagram | null) => void
   setSelectedNode: (nodeId: string | null) => void
   updateNodeStatus: (nodeId: string, status: Node['status']) => void
-  updateNodeConfiguration: (nodeId: string, config: Record<string, unknown>) => void
+  updateNodeConfiguration: (
+    nodeId: string,
+    config: Record<string, unknown>
+  ) => void
   clearMessages: () => void
   createFlowFromPrompt: (prompt: string) => void
 }
 
-export const useDataFlowStore = create<DataFlowStore>((set) => ({
+export const useDataFlowStore = create<DataFlowStore>(set => ({
   currentFlow: null,
   messages: [],
   selectedNodeId: null,
@@ -26,9 +29,9 @@ export const useDataFlowStore = create<DataFlowStore>((set) => ({
       type,
       timestamp: new Date(),
     }
-    
-    set((state) => ({
-      messages: [...state.messages, message]
+
+    set(state => ({
+      messages: [...state.messages, message],
     }))
   },
 
@@ -45,24 +48,31 @@ export const useDataFlowStore = create<DataFlowStore>((set) => ({
   },
 
   updateNodeStatus: (nodeId: string, status: Node['status']) => {
-    set((state) => ({
-      currentFlow: state.currentFlow ? {
-        ...state.currentFlow,
-        nodes: state.currentFlow.nodes.map(node =>
-          node.id === nodeId ? { ...node, status } : node
-        )
-      } : null
+    set(state => ({
+      currentFlow: state.currentFlow
+        ? {
+            ...state.currentFlow,
+            nodes: state.currentFlow.nodes.map(node =>
+              node.id === nodeId ? { ...node, status } : node
+            ),
+          }
+        : null,
     }))
   },
 
-  updateNodeConfiguration: (nodeId: string, config: Record<string, unknown>) => {
-    set((state) => ({
-      currentFlow: state.currentFlow ? {
-        ...state.currentFlow,
-        nodes: state.currentFlow.nodes.map(node =>
-          node.id === nodeId ? { ...node, configuration: config } : node
-        )
-      } : null
+  updateNodeConfiguration: (
+    nodeId: string,
+    config: Record<string, unknown>
+  ) => {
+    set(state => ({
+      currentFlow: state.currentFlow
+        ? {
+            ...state.currentFlow,
+            nodes: state.currentFlow.nodes.map(node =>
+              node.id === nodeId ? { ...node, configuration: config } : node
+            ),
+          }
+        : null,
     }))
   },
 
@@ -72,12 +82,12 @@ export const useDataFlowStore = create<DataFlowStore>((set) => ({
 
   createFlowFromPrompt: (prompt: string) => {
     set({ isLoading: true })
-    
+
     setTimeout(() => {
       const sourceId = generateId()
       const transformId = generateId()
       const destinationId = generateId()
-      
+
       const flow: FlowDiagram = {
         id: generateId(),
         title: 'Data Flow',
@@ -91,8 +101,8 @@ export const useDataFlowStore = create<DataFlowStore>((set) => ({
               type: 'source',
               status: 'pending',
               label: 'Source',
-              description: 'Data source'
-            }
+              description: 'Data source',
+            },
           },
           {
             id: transformId,
@@ -102,8 +112,8 @@ export const useDataFlowStore = create<DataFlowStore>((set) => ({
               type: 'transform',
               status: 'pending',
               label: 'Transform',
-              description: 'Data transformation'
-            }
+              description: 'Data transformation',
+            },
           },
           {
             id: destinationId,
@@ -113,36 +123,39 @@ export const useDataFlowStore = create<DataFlowStore>((set) => ({
               type: 'destination',
               status: 'pending',
               label: 'Destination',
-              description: 'Data destination'
-            }
-          }
+              description: 'Data destination',
+            },
+          },
         ],
         edges: [
           {
             id: generateId(),
             source: sourceId,
             target: transformId,
-            type: 'smoothstep'
+            type: 'smoothstep',
           },
           {
             id: generateId(),
             source: transformId,
             target: destinationId,
-            type: 'smoothstep'
-          }
-        ]
+            type: 'smoothstep',
+          },
+        ],
       }
 
-      set((state) => ({
+      set(state => ({
         currentFlow: flow,
         isLoading: false,
-        messages: [...state.messages, {
-          id: generateId(),
-          content: `I've created a data flow based on your request: "${prompt}". Let me ask you some questions to configure each component.`,
-          type: 'ai',
-          timestamp: new Date()
-        }]
+        messages: [
+          ...state.messages,
+          {
+            id: generateId(),
+            content: `I've created a data flow based on your request: "${prompt}". Let me ask you some questions to configure each component.`,
+            type: 'ai',
+            timestamp: new Date(),
+          },
+        ],
       }))
     }, 1500)
-  }
-})) 
+  },
+}))

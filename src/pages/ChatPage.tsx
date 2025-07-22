@@ -6,7 +6,6 @@ import { useDataFlowStore } from '@/store/useStore'
 import { useTheme } from '@/hooks/useTheme'
 import ChatInterface from '../components/chat/ChatInterface'
 import Canvas from '../components/canvas/Canvas'
-import PropertiesPanel from '../components/canvas/PropertiesPanel'
 import nexlaLogo from '@/assets/Nexla_Icon_Blue_RGB.png'
 
 export default function ChatPage() {
@@ -34,7 +33,11 @@ export default function ChatPage() {
               <ArrowLeft className="w-4 h-4" />
             </Button>
             <div className="flex items-center gap-3">
-              <img src={nexlaLogo} alt="Nexla" className="w-10 h-10 object-contain" />
+              <img
+                src={nexlaLogo}
+                alt="Nexla"
+                className="w-10 h-10 object-contain"
+              />
               <div>
                 <h1 className="text-lg font-semibold text-gray-900 dark:text-white">
                   Data Flow Architect
@@ -53,7 +56,11 @@ export default function ChatPage() {
             onClick={toggleTheme}
             className="flex items-center gap-2"
           >
-            {theme === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+            {theme === 'dark' ? (
+              <Sun className="w-4 h-4" />
+            ) : (
+              <Moon className="w-4 h-4" />
+            )}
           </Button>
         </div>
       </div>
@@ -62,13 +69,10 @@ export default function ChatPage() {
         <div className="w-1/3 border-r border-gray-200 dark:border-gray-700 flex flex-col">
           <ChatInterface />
         </div>
-        <div className="w-1/2 flex flex-col">
+        <div className="w-2/3 flex flex-col">
           <Canvas />
-        </div>
-        <div className="w-1/6 flex flex-col">
-          <PropertiesPanel />
         </div>
       </div>
     </div>
   )
-} 
+}

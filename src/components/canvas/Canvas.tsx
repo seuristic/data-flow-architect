@@ -1,5 +1,12 @@
 import { useCallback, useEffect } from 'react'
-import { ReactFlow, Background, Controls, useNodesState, useEdgesState, addEdge } from '@xyflow/react'
+import {
+  ReactFlow,
+  Background,
+  Controls,
+  useNodesState,
+  useEdgesState,
+  addEdge,
+} from '@xyflow/react'
 import type { Connection } from '@xyflow/react'
 import { useDataFlowStore } from '../../store/useStore'
 import { nodeTypes } from './nodeTypes'
@@ -8,7 +15,7 @@ import { useTheme } from '@/hooks/useTheme'
 
 export default function Canvas() {
   const { currentFlow, setSelectedNode } = useDataFlowStore()
-  const { theme } = useTheme();
+  const { theme } = useTheme()
 
   // Convert our flow data to React Flow format
   const initialNodes: FlowNode[] = currentFlow?.nodes || []
@@ -26,20 +33,25 @@ export default function Canvas() {
   }, [currentFlow, setNodes, setEdges])
 
   const onConnect = useCallback(
-    (params: Connection) => setEdges((eds) => addEdge(params, eds)),
+    (params: Connection) => setEdges(eds => addEdge(params, eds)),
     [setEdges]
   )
 
-  const onNodeClick = useCallback((event: React.MouseEvent, node: FlowNode) => {
-    setSelectedNode(node.id)
-  }, [setSelectedNode])
+  const onNodeClick = useCallback(
+    (_event: React.MouseEvent, node: FlowNode) => {
+      setSelectedNode(node.id)
+    },
+    [setSelectedNode]
+  )
 
   if (!currentFlow) {
     return (
       <div className="h-full flex items-center justify-center bg-gray-50 dark:bg-gray-900">
         <div className="text-center text-gray-500 dark:text-gray-400">
           <p>No flow diagram available</p>
-          <p className="text-sm">Start a conversation to create your data flow</p>
+          <p className="text-sm">
+            Start a conversation to create your data flow
+          </p>
         </div>
       </div>
     )
@@ -69,8 +81,8 @@ export default function Canvas() {
           nodeTypes={nodeTypes}
           fitView
         >
-          <Background 
-            color={theme === "dark"  ? '#ffffff' : '#000000'}
+          <Background
+            color={theme === 'dark' ? '#ffffff' : '#000000'}
             gap={20}
           />
           <Controls />
@@ -78,4 +90,4 @@ export default function Canvas() {
       </div>
     </div>
   )
-} 
+}
