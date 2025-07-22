@@ -14,14 +14,14 @@ export const examplePrompts: ExamplePrompt[] = [
   },
   {
     id: '2',
-    title: 'Sync Salesforce contacts to Mailchimp',
-    description: 'Automatically sync contacts between CRM and email marketing',
+    title: 'Sync Salesforce to Mailchimp',
+    description: 'Auto sync contacts between CRM and email marketing',
     prompt:
       'Sync Salesforce contacts and leads to Mailchimp for email campaigns',
   },
   {
     id: '3',
-    title: 'Get PostgreSQL users and send to a webhook',
+    title: 'PostgreSQL users to webhook',
     description: 'Extract user data and send to external webhook',
     prompt: 'Get PostgreSQL users and send to a webhook',
   },

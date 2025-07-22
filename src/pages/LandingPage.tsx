@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -18,8 +18,13 @@ import nexlaLogo from '@/assets/Nexla_Icon_Blue_RGB.png'
 export default function LandingPage() {
   const [prompt, setPrompt] = useState('')
   const navigate = useNavigate()
-  const { createFlowFromPrompt } = useDataFlowStore()
+  const { createFlowFromPrompt, resetState } = useDataFlowStore()
   const { theme, toggleTheme } = useTheme()
+
+  // Reset state when landing page loads
+  useEffect(() => {
+    resetState()
+  }, [resetState])
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -84,7 +89,7 @@ export default function LandingPage() {
           </div>
 
           {/* Main Input Section */}
-          <div className="max-w-3xl w-full mx-auto mb-16">
+          <div className="max-w-3xl w-full mx-auto mb-16 mt-8">
             <Card className="shadow-lg bg-white/80 backdrop-blur-sm dark:bg-gray-800/80">
               <CardHeader className="text-center">
                 <CardTitle className="text-2xl">
@@ -117,28 +122,24 @@ export default function LandingPage() {
         </div>
 
         <div className="max-w-3xl w-full mx-auto">
-          <h2 className="text-2xl font-semibold text-center text-gray-900 dark:text-white mb-8">
+          <h2 className="text-xl font-semibold text-center text-gray-900 dark:text-white mb-4">
             Try these examples
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 place-content-center lg:grid-cols-3 gap-4 justify-items-center">
             {examplePrompts.map(example => (
               <Card
                 key={example.id}
-                className="justify-between w-full cursor-pointer hover:shadow-lg transition-shadow duration-200 bg-white/80 backdrop-blur-sm dark:bg-gray-800/80"
+                className="justify-between gap-2 w-full cursor-pointer hover:shadow-lg transition-shadow duration-200 bg-white/80 backdrop-blur-sm dark:bg-gray-800/80"
+                onClick={() => handleExampleClick(example.prompt)}
               >
                 <CardHeader>
-                  <CardTitle className="text-base">{example.title}</CardTitle>
-                  <CardDescription className="text-sm">
+                  <CardTitle className="text-sm">{example.title}</CardTitle>
+                  <CardDescription className="text-xs">
                     {example.description}
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    className="w-full"
-                    onClick={() => handleExampleClick(example.prompt)}
-                  >
+                  <Button variant="outline" size="sm" className="w-full">
                     Use This Example
                   </Button>
                 </CardContent>
@@ -148,7 +149,7 @@ export default function LandingPage() {
         </div>
 
         {/* Footer */}
-        <div className="mt-20 text-center">
+        <div className="text-center mt-auto">
           <p className="text-gray-500 dark:text-gray-400 text-sm">
             © 2025 Nexla. All rights reserved.
           </p>

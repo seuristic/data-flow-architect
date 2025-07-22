@@ -9,7 +9,7 @@ import type { Message } from '@/types'
 export default function ChatInterface() {
   const [inputValue, setInputValue] = useState('')
   const messagesEndRef = useRef<HTMLDivElement>(null)
-  const { messages, isLoading, addMessage } = useDataFlowStore()
+  const { messages, isLoading, processUserInput } = useDataFlowStore()
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
@@ -18,15 +18,8 @@ export default function ChatInterface() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     if (inputValue.trim() && !isLoading) {
-      addMessage(inputValue.trim(), 'user')
+      processUserInput(inputValue.trim())
       setInputValue('')
-
-      setTimeout(() => {
-        addMessage(
-          'I understand your request. Let me help you configure this data flow step by step.',
-          'ai'
-        )
-      }, 1000)
     }
   }
 

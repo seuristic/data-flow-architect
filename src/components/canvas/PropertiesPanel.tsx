@@ -79,7 +79,9 @@ export default function PropertiesPanel() {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <div
-                className={`w-4 h-4 rounded-full ${getNodeStatusColor(nodeData.status)}`}
+                className={`w-4 h-4 rounded-full ${getNodeStatusColor(
+                  nodeData.status
+                )}`}
               />
               {nodeData.label}
             </CardTitle>
@@ -136,12 +138,37 @@ export default function PropertiesPanel() {
             <div>
               <h4 className="text-sm font-medium mb-2">Configuration</h4>
               <div className="space-y-2">
+                {nodeData.configuration &&
+                Object.keys(nodeData.configuration).length > 0 ? (
+                  <div className="space-y-2">
+                    {Object.entries(nodeData.configuration).map(
+                      ([key, value]) => (
+                        <div key={key}>
+                          <label className="text-xs text-gray-500 capitalize">
+                            {key}
+                          </label>
+                          <div className="text-sm font-medium bg-gray-50 dark:bg-gray-700 px-3 py-2 rounded border">
+                            {String(value)}
+                          </div>
+                        </div>
+                      )
+                    )}
+                  </div>
+                ) : (
+                  <div className="text-sm text-gray-500 italic">
+                    No configuration set yet. Use the chat to configure this
+                    node.
+                  </div>
+                )}
+
                 <div>
-                  <label className="text-xs text-gray-500">Name</label>
+                  <label className="text-xs text-gray-500">
+                    Additional Name
+                  </label>
                   <Input
                     value={(nodeData.configuration?.name as string) || ''}
                     onChange={e => handleConfigChange('name', e.target.value)}
-                    placeholder="Enter node name"
+                    placeholder="Enter additional name"
                     className="text-sm"
                   />
                 </div>
@@ -158,56 +185,6 @@ export default function PropertiesPanel() {
                     className="text-sm"
                   />
                 </div>
-                {nodeData.type === 'source' && (
-                  <div>
-                    <label className="text-xs text-gray-500">Source Type</label>
-                    <Input
-                      value={
-                        (nodeData.configuration?.sourceType as string) || ''
-                      }
-                      onChange={e =>
-                        handleConfigChange('sourceType', e.target.value)
-                      }
-                      placeholder="e.g., Database, API, File"
-                      className="text-sm"
-                    />
-                  </div>
-                )}
-                {nodeData.type === 'destination' && (
-                  <div>
-                    <label className="text-xs text-gray-500">
-                      Destination Type
-                    </label>
-                    <Input
-                      value={
-                        (nodeData.configuration?.destinationType as string) ||
-                        ''
-                      }
-                      onChange={e =>
-                        handleConfigChange('destinationType', e.target.value)
-                      }
-                      placeholder="e.g., Warehouse, API, File"
-                      className="text-sm"
-                    />
-                  </div>
-                )}
-                {nodeData.type === 'transform' && (
-                  <div>
-                    <label className="text-xs text-gray-500">
-                      Transform Type
-                    </label>
-                    <Input
-                      value={
-                        (nodeData.configuration?.transformType as string) || ''
-                      }
-                      onChange={e =>
-                        handleConfigChange('transformType', e.target.value)
-                      }
-                      placeholder="e.g., Filter, Map, Aggregate"
-                      className="text-sm"
-                    />
-                  </div>
-                )}
               </div>
             </div>
 
