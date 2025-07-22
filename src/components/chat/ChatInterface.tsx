@@ -46,9 +46,9 @@ export default function ChatInterface() {
             }`}
           >
             {message.type === 'user' ? (
-              <User className="w-3 h-3 sm:w-4 sm:h-4" />
+              <User className="w-4 h-4 sm:w-4 sm:h-4" />
             ) : (
-              <Bot className="w-3 h-3 sm:w-4 sm:h-4" />
+              <Bot className="w-4 h-4 sm:w-4 sm:h-4" />
             )}
           </div>
           <div
