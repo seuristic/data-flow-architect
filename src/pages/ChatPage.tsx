@@ -21,29 +21,30 @@ export default function ChatPage() {
 
   return (
     <div className="h-screen flex flex-col bg-gray-50 dark:bg-gray-900">
-      <div className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 px-6 py-4 flex-shrink-0">
+      {/* Header - Mobile responsive */}
+      <div className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 px-4 sm:px-6 py-3 sm:py-4 flex-shrink-0">
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 sm:gap-4">
             <Button
               variant="ghost"
               size="icon"
               onClick={() => navigate('/')}
-              className="flex items-center justify-center"
+              className="flex items-center justify-center p-2"
             >
               <ArrowLeft className="w-4 h-4" />
             </Button>
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2 sm:gap-3">
               <img
                 src={nexlaLogo}
                 alt="Nexla"
-                className="w-10 h-10 object-contain"
+                className="w-8 h-8 sm:w-10 sm:h-10 object-contain"
               />
-              <div>
-                <h1 className="text-lg font-semibold text-gray-900 dark:text-white">
+              <div className="min-w-0">
+                <h1 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-white truncate">
                   Data Flow Architect
                 </h1>
                 {currentFlow && (
-                  <p className="text-sm text-gray-500 dark:text-gray-400">
+                  <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 truncate">
                     {currentFlow.description}
                   </p>
                 )}
@@ -54,7 +55,7 @@ export default function ChatPage() {
             variant="ghost"
             size="icon"
             onClick={toggleTheme}
-            className="flex items-center gap-2"
+            className="flex items-center gap-2 p-2"
           >
             {theme === 'dark' ? (
               <Sun className="w-4 h-4" />
@@ -65,11 +66,15 @@ export default function ChatPage() {
         </div>
       </div>
 
-      <div className="flex-1 flex overflow-hidden min-h-0">
-        <div className="w-1/3 border-r border-gray-200 dark:border-gray-700 flex flex-col">
+      {/* Main Content - Responsive Layout */}
+      <div className="flex-1 flex flex-col lg:flex-row overflow-hidden min-h-0">
+        {/* Chat Interface - Full width on mobile, 1/3 on desktop */}
+        <div className="w-full lg:w-1/3 border-b lg:border-b-0 lg:border-r border-gray-200 dark:border-gray-700 flex flex-col h-1/2 lg:h-full">
           <ChatInterface />
         </div>
-        <div className="w-2/3 flex flex-col">
+
+        {/* Canvas - Full width on mobile, 2/3 on desktop */}
+        <div className="w-full lg:w-2/3 flex flex-col h-1/2 lg:h-full">
           <Canvas />
         </div>
       </div>

@@ -30,7 +30,9 @@ export default function ChatInterface() {
         message.type === 'user' ? 'justify-end' : 'justify-start'
       } mb-4`}
     >
-      <div className={`max-w-xs lg:max-w-md px-4 py-2 rounded-lg`}>
+      <div
+        className={`max-w-[85%] sm:max-w-xs lg:max-w-md px-3 sm:px-4 py-2 rounded-lg`}
+      >
         <div
           className={`flex items-start ${
             message.type === 'user'
@@ -44,19 +46,19 @@ export default function ChatInterface() {
             }`}
           >
             {message.type === 'user' ? (
-              <User className="w-4 h-4" />
+              <User className="w-3 h-3 sm:w-4 sm:h-4" />
             ) : (
-              <Bot className="w-4 h-4" />
+              <Bot className="w-3 h-3 sm:w-4 sm:h-4" />
             )}
           </div>
           <div
-            className={`flex-1 p-2 rounded-b-xl w-[calc(100%-32px)] ${
+            className={`flex-1 p-2 sm:p-3 rounded-b-xl w-[calc(100%-24px)] sm:w-[calc(100%-32px)] ${
               message.type === 'user'
                 ? 'rounded-tl-xl bg-blue-500 text-white'
                 : 'rounded-tr-xl bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white'
             }`}
           >
-            <p className="text-sm">{message.content}</p>
+            <p className="text-xs sm:text-sm">{message.content}</p>
             <p
               className={`text-xs mt-1 ${
                 message.type === 'user'
@@ -97,7 +99,7 @@ export default function ChatInterface() {
         <div ref={messagesEndRef} />
       </div>
 
-      <div className="border-t border-gray-200 dark:border-gray-700 p-4">
+      <div className="border-t border-gray-200 dark:border-gray-700 p-3 sm:p-4">
         <form onSubmit={handleSubmit} className="flex gap-2">
           <Input
             type="text"
@@ -105,12 +107,13 @@ export default function ChatInterface() {
             value={inputValue}
             onChange={e => setInputValue(e.target.value)}
             disabled={isLoading}
-            className="flex-1"
+            className="flex-1 text-sm sm:text-base"
           />
           <Button
             type="submit"
             size="icon"
             disabled={!inputValue.trim() || isLoading}
+            className="p-2 sm:p-3"
           >
             <Send className="w-4 h-4" />
           </Button>

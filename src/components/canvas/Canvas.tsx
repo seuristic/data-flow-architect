@@ -57,8 +57,8 @@ export default function Canvas() {
 
   return (
     <div className="h-full bg-gray-50 dark:bg-gray-900 flex flex-col">
-      <div className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 px-4 py-2 flex-shrink-0">
-        <h3 className="text-sm font-medium text-gray-900 dark:text-white">
+      <div className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 px-3 sm:px-4 py-2 flex-shrink-0">
+        <h3 className="text-xs sm:text-sm font-medium text-gray-900 dark:text-white">
           Flow Diagram
         </h3>
         <p className="text-xs text-gray-500 dark:text-gray-400">
@@ -76,12 +76,15 @@ export default function Canvas() {
           onNodeClick={onNodeClick}
           nodeTypes={nodeTypes}
           fitView
+          minZoom={0.5}
+          maxZoom={2}
+          defaultViewport={{ x: 0, y: 0, zoom: 0.8 }}
         >
           <Background
             color={theme === 'dark' ? '#374151' : '#e5e7eb'}
             gap={20}
           />
-          <Controls />
+          <Controls className="scale-75 sm:scale-100" />
         </ReactFlow>
       </div>
     </div>

@@ -41,11 +41,9 @@ export default function LandingPage() {
 
   return (
     <div className="min-h-screen w-full flex flex-col">
-      {/* Sticky Navigation Bar */}
       <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-sm dark:bg-gray-900/80 border-b border-gray-200 dark:border-gray-700">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
-            {/* Logo */}
             <div className="flex items-center gap-3">
               <img
                 src={nexlaLogo}
@@ -57,7 +55,6 @@ export default function LandingPage() {
               </span>
             </div>
 
-            {/* Theme Toggle */}
             <Button
               variant="ghost"
               size="icon"
@@ -74,44 +71,48 @@ export default function LandingPage() {
         </div>
       </nav>
 
-      <div className="w-full flex-1 p-4 h-full flex flex-col">
-        <div className="flex flex-col w-full pt-24">
+      <div className="w-full flex-1 h-full flex flex-col">
+        <div className="flex flex-col w-full pt-16 sm:pt-24">
           {/* Hero Section */}
           <div className="text-center">
-            <h1 className="text-5xl font-bold text-gray-900 dark:text-white mb-6">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6">
               Data Flow Architect
             </h1>
-            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-8">
+            <p className="text-base sm:text-lg lg:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-6 sm:mb-8 px-4">
               Describe your data integration needs in plain English and watch as
               we create interactive flow diagrams that visualize your data
               pipelines.
             </p>
           </div>
 
-          {/* Main Input Section */}
-          <div className="max-w-3xl w-full mx-auto mb-16 mt-8">
+          <div className="max-w-3xl w-full mx-auto mb-12 sm:mb-16 mt-6 sm:mt-8 px-4">
             <Card className="shadow-lg bg-white/80 backdrop-blur-sm dark:bg-gray-800/80">
               <CardHeader className="text-center">
-                <CardTitle className="text-2xl">
+                <CardTitle className="text-xl sm:text-2xl">
                   What data flow would you like to create?
                 </CardTitle>
-                <CardDescription>
+                <CardDescription className="text-sm sm:text-base">
                   Describe your data integration requirements and we'll build a
                   visual flow diagram for you
                 </CardDescription>
               </CardHeader>
               <CardContent>
                 <form onSubmit={handleSubmit} className="space-y-4">
-                  <div className="flex gap-4 items-center">
+                  <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 items-stretch sm:items-center">
                     <Input
                       type="text"
                       placeholder="e.g., Connect Shopify orders to BigQuery for analytics..."
                       value={prompt}
                       onChange={e => setPrompt(e.target.value)}
-                      className="flex-1 text-lg"
+                      className="flex-1 text-base sm:text-lg"
                       required
                     />
-                    <Button type="submit" size="lg" disabled={!prompt.trim()}>
+                    <Button
+                      type="submit"
+                      size="lg"
+                      disabled={!prompt.trim()}
+                      className="w-full sm:w-auto"
+                    >
                       Create Flow
                     </Button>
                   </div>
@@ -121,25 +122,31 @@ export default function LandingPage() {
           </div>
         </div>
 
-        <div className="max-w-3xl w-full mx-auto">
-          <h2 className="text-xl font-semibold text-center text-gray-900 dark:text-white mb-4">
+        <div className="max-w-3xl w-full mx-auto px-4">
+          <h2 className="text-lg sm:text-xl font-semibold text-center text-gray-900 dark:text-white mb-4 sm:mb-6">
             Try these examples
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 place-content-center lg:grid-cols-3 gap-4 justify-items-center">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 justify-items-center">
             {examplePrompts.map(example => (
               <Card
                 key={example.id}
-                className="justify-between gap-2 w-full cursor-pointer hover:shadow-lg transition-shadow duration-200 bg-white/80 backdrop-blur-sm dark:bg-gray-800/80"
+                className="justify-between gap-2 w-full max-w-sm cursor-pointer hover:shadow-lg transition-shadow duration-200 bg-white/80 backdrop-blur-sm dark:bg-gray-800/80"
                 onClick={() => handleExampleClick(example.prompt)}
               >
-                <CardHeader>
-                  <CardTitle className="text-sm">{example.title}</CardTitle>
-                  <CardDescription className="text-xs">
+                <CardHeader className="pb-3">
+                  <CardTitle className="text-sm sm:text-base">
+                    {example.title}
+                  </CardTitle>
+                  <CardDescription className="text-xs sm:text-sm">
                     {example.description}
                   </CardDescription>
                 </CardHeader>
-                <CardContent>
-                  <Button variant="outline" size="sm" className="w-full">
+                <CardContent className="pt-0">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="w-full text-xs sm:text-sm"
+                  >
                     Use This Example
                   </Button>
                 </CardContent>
@@ -148,8 +155,7 @@ export default function LandingPage() {
           </div>
         </div>
 
-        {/* Footer */}
-        <div className="text-center mt-auto">
+        <div className="text-center md:mt-auto py-8 sm:py-0">
           <p className="text-gray-500 dark:text-gray-400 text-sm">
             © 2025 Nexla. All rights reserved.
           </p>
