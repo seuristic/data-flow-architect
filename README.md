@@ -1,158 +1,222 @@
 # Data Flow Architect
 
-A modern React application built with Vite, TypeScript, Tailwind CSS v4, Zustand for state management, and shadcn/ui for beautiful UI components.
+A conversational data integration platform that visualizes data pipelines through interactive flow diagrams. Built with React, TypeScript, and modern web technologies.
 
 ## 🚀 Features
 
-- **⚡ Vite** - Lightning fast build tool and dev server
-- **⚛️ React 18** - Latest React with concurrent features
-- **📘 TypeScript** - Type-safe development
-- **🎨 Tailwind CSS v4** - Latest version with Vite plugin integration
-- **🔄 Zustand** - Lightweight state management
-- **🎯 shadcn/ui** - Beautiful, accessible UI components
-- **🌙 Dark/Light Mode** - Theme switching capability
-- **📱 Responsive Design** - Mobile-first approach
-- **🔧 Path Aliases** - Clean imports with `@/` prefix
+- **Conversational AI Interface** - Describe your data integration needs in plain English
+- **Interactive Flow Diagrams** - Visual representation of data pipelines using React Flow
+- **Real-time Configuration** - Configure data sources, transformations, and destinations through chat
+- **Responsive Design** - Works seamlessly on desktop and mobile devices
+- **Dark/Light Theme** - Toggle between themes with persistent preferences
+- **Modern UI/UX** - Clean interface built with Shadcn UI components
+- **TypeScript Support** - Full type safety throughout the application
+- **State Management** - Global state management with Zustand
 
 ## 🛠️ Tech Stack
 
+- **Frontend Framework**: React 19 with TypeScript
 - **Build Tool**: Vite
-- **Framework**: React 18
-- **Language**: TypeScript
 - **Styling**: Tailwind CSS v4
+- **UI Components**: Shadcn UI
 - **State Management**: Zustand
-- **UI Components**: shadcn/ui
+- **Routing**: React Router DOM
+- **Flow Diagrams**: React Flow (@xyflow/react)
 - **Icons**: Lucide React
-- **Package Manager**: npm
+- **Theme**: Custom dark/light mode implementation
 
-## 📦 Installation
+## 📋 Prerequisites
 
-1. Clone the repository:
+Before you begin, ensure you have the following installed:
+
+- **Node.js** (v18 or higher)
+- **npm** (v9 or higher)
+- **Git**
+
+## 🚀 Quick Start
+
+### 1. Clone the Repository
 
 ```bash
 git clone <repository-url>
 cd data-flow-architect
 ```
 
-2. Install dependencies:
+### 2. Install Dependencies
 
 ```bash
 npm install
 ```
 
-3. Start the development server:
+### 3. Start Development Server
 
 ```bash
 npm run dev
 ```
 
-4. Open your browser and navigate to `http://localhost:5173`
+The application will be available at:
 
-## 🏗️ Project Structure
+- **Local**: http://localhost:5173/
+- **Network**: http://your-ip:5173/ (for mobile testing)
 
-```
-src/
-├── components/
-│   └── ui/           # shadcn/ui components
-├── store/
-│   └── useStore.ts   # Zustand store
-├── lib/
-│   └── utils.ts      # Utility functions
-├── App.tsx           # Main application component
-├── main.tsx          # Application entry point
-└── index.css         # Global styles with Tailwind CSS
-```
-
-## 🎯 Available Scripts
-
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm run preview` - Preview production build
-- `npm run lint` - Run ESLint
-
-## 🎨 Styling
-
-This project uses **Tailwind CSS v4** with the new Vite plugin integration. The setup includes:
-
-- Modern CSS features with the latest Tailwind CSS
-- Dark/Light mode support
-- Responsive design utilities
-- Custom component styling with shadcn/ui
-
-## 🔄 State Management
-
-Zustand is used for global state management with TypeScript support. The store includes:
-
-- Counter state with increment/decrement actions
-- User authentication state
-- Theme switching (dark/light mode)
-
-## 🎯 UI Components
-
-shadcn/ui components are used throughout the application:
-
-- **Button** - Various button styles and variants
-- **Card** - Content containers with headers and descriptions
-- **Input** - Form input fields
-- More components can be added using `npx shadcn@latest add <component-name>`
-
-## 🌙 Theme System
-
-The application supports both light and dark themes:
-
-- Automatic theme switching
-- Persistent theme state
-- Smooth transitions between themes
-- Tailwind CSS dark mode utilities
-
-## 📱 Responsive Design
-
-The application is built with a mobile-first approach using Tailwind CSS responsive utilities:
-
-- Mobile-friendly layouts
-- Responsive grid systems
-- Adaptive typography
-- Touch-friendly interactions
-
-## 🔧 Development
-
-### Adding New shadcn/ui Components
-
-```bash
-npx shadcn@latest add <component-name>
-```
-
-### Path Aliases
-
-Use `@/` prefix for imports from the `src/` directory:
-
-```typescript
-import { Button } from '@/components/ui/button'
-import { useStore } from '@/store/useStore'
-```
-
-### TypeScript Configuration
-
-The project includes proper TypeScript configuration with:
-
-- Strict type checking
-- Path mapping for clean imports
-- Modern ES2022 target
-- React JSX support
-
-## 🚀 Deployment
-
-Build the application for production:
+### 4. Build for Production
 
 ```bash
 npm run build
 ```
 
-The built files will be in the `dist/` directory, ready for deployment to any static hosting service.
+### 5. Preview Production Build
 
-## 📄 License
+```bash
+npm run preview
+```
 
-This project is open source and available under the [MIT License](LICENSE).
+## 📁 Project Structure
+
+```
+data-flow-architect/
+├── src/
+│   ├── assets/                 # Static assets (images, icons)
+│   ├── components/             # Reusable UI components
+│   │   ├── canvas/            # Flow diagram components
+│   │   ├── chat/              # Chat interface components
+│   │   └── ui/                # Shadcn UI components
+│   ├── contexts/              # React contexts
+│   ├── hooks/                 # Custom React hooks
+│   ├── pages/                 # Page components
+│   ├── store/                 # Zustand store
+│   ├── types/                 # TypeScript type definitions
+│   ├── utils/                 # Utility functions
+│   ├── App.tsx               # Main app component
+│   ├── index.css             # Global styles
+│   └── main.tsx              # App entry point
+├── public/                    # Public assets
+├── package.json              # Dependencies and scripts
+├── vite.config.ts            # Vite configuration
+├── tsconfig.json             # TypeScript configuration
+├── tailwind.config.js        # Tailwind CSS configuration
+└── README.md                 # This file
+```
+
+## 🎯 Usage
+
+### Creating a Data Flow
+
+1. **Landing Page**: Start by describing your data integration needs
+2. **Example Prompts**: Use pre-built examples or create custom flows
+3. **Chat Interface**: Configure each component through conversational AI
+4. **Visual Canvas**: See your data pipeline visualized in real-time
+5. **Properties Panel**: View and edit node configurations
+
+### Example Workflows
+
+- **E-commerce Integration**: Connect Shopify to BigQuery for analytics
+- **CRM Sync**: Sync Salesforce contacts to Mailchimp
+- **Database Integration**: Extract PostgreSQL data and send to webhooks
+- **Payment Analysis**: Analyze Stripe payments in Google Sheets
+
+## 🎨 Customization
+
+### Adding New Node Types
+
+1. Define the node type in `src/types/index.ts`
+2. Create a custom node component in `src/components/canvas/`
+3. Register the node type in `src/components/canvas/nodeTypes.ts`
+
+### Styling
+
+The application uses Tailwind CSS v4 with custom CSS variables for theming. Modify `src/index.css` for global styles and component-specific styles in their respective files.
+
+### State Management
+
+The application uses Zustand for global state management. The main store is located in `src/store/useStore.ts` and includes:
+
+- Chat messages and AI interactions
+- Flow diagram data
+- Node configurations and status
+- Theme preferences
+
+## 🔧 Development
+
+### Available Scripts
+
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run preview` - Preview production build
+- `npm run lint` - Run ESLint
+- `npm run type-check` - Run TypeScript type checking
+
+### Code Style
+
+The project uses Prettier for code formatting with the following configuration:
+
+```json
+{
+  "semi": false,
+  "singleQuote": true,
+  "tabWidth": 2,
+  "trailingComma": "es5",
+  "printWidth": 80
+}
+```
+
+### Git Workflow
+
+1. Create a feature branch from `main`
+2. Make your changes
+3. Test thoroughly
+4. Commit with descriptive messages
+5. Push and create a pull request
+
+## 🐛 Troubleshooting
+
+### Common Issues
+
+**Port Already in Use**
+
+```bash
+# Kill process on port 5173
+lsof -ti:5173 | xargs kill -9
+```
+
+**Dependencies Issues**
+
+```bash
+# Clear npm cache and reinstall
+npm cache clean --force
+rm -rf node_modules package-lock.json
+npm install
+```
+
+**TypeScript Errors**
+
+```bash
+# Run type checking
+npm run type-check
+```
+
+### Performance Optimization
+
+- Use React.memo for expensive components
+- Implement proper dependency arrays in useEffect
+- Optimize bundle size with code splitting
+- Use lazy loading for routes
+
+## 📱 Mobile Support
+
+The application is fully responsive and optimized for mobile devices:
+
+- **Touch-friendly interface**
+- **Responsive layout** (vertical on mobile, horizontal on desktop)
+- **Optimized for small screens**
+- **Gesture support** for canvas interactions
+
+## 🔒 Security
+
+- No sensitive data is stored locally
+- All configurations are client-side only
+- No external API calls (demo mode)
+- Input sanitization for user messages
 
 ## 🤝 Contributing
 
@@ -162,6 +226,21 @@ This project is open source and available under the [MIT License](LICENSE).
 4. Add tests if applicable
 5. Submit a pull request
 
+## 📄 License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## 🙏 Acknowledgments
+
+- **React Flow** for the flow diagram functionality
+- **Shadcn UI** for the beautiful component library
+- **Tailwind CSS** for the utility-first styling
+- **Zustand** for the lightweight state management
+
 ## 📞 Support
 
-If you have any questions or need help, please open an issue on GitHub.
+For support and questions:
+
+- Create an issue in the repository
+- Check the troubleshooting section
+- Review the documentation
