@@ -5,6 +5,7 @@ import { ArrowLeft } from 'lucide-react'
 import { useDataFlowStore } from '@/store/useStore'
 import ChatInterface from '@/components/chat/ChatInterface'
 import Canvas from '@/components/canvas/Canvas'
+import PropertiesPanel from '@/components/canvas/PropertiesPanel'
 
 export default function ChatPage() {
   const navigate = useNavigate()
@@ -46,16 +47,21 @@ export default function ChatPage() {
         </div>
       </div>
 
-      {/* Main Content - Split Pane */}
+      {/* Main Content - Three Pane Layout */}
       <div className="flex-1 flex overflow-hidden">
         {/* Chat Interface - Left Side */}
-        <div className="w-1/2 border-r border-gray-200 dark:border-gray-700">
+        <div className="w-1/3 border-r border-gray-200 dark:border-gray-700">
           <ChatInterface />
         </div>
 
-        {/* Canvas - Right Side */}
+        {/* Canvas - Center */}
         <div className="w-1/2">
           <Canvas />
+        </div>
+
+        {/* Properties Panel - Right Side */}
+        <div className="w-1/6">
+          <PropertiesPanel />
         </div>
       </div>
     </div>
