@@ -1,3 +1,5 @@
+import type { Node as ReactFlowNode, Edge as ReactFlowEdge } from '@xyflow/react'
+
 // Message types for chat interface
 export interface Message {
   id: string
@@ -11,6 +13,30 @@ export interface Message {
 export type NodeType = 'source' | 'transform' | 'destination'
 export type NodeStatus = 'pending' | 'partial' | 'complete' | 'error'
 
+// Custom node data interface
+export interface NodeData {
+  type: NodeType
+  status: NodeStatus
+  label: string
+  description?: string
+  configuration?: Record<string, unknown>
+  [key: string]: unknown
+}
+
+// Type aliases for React Flow components
+export type FlowNode = ReactFlowNode<NodeData>
+export type FlowEdge = ReactFlowEdge
+
+// Flow diagram data
+export interface FlowDiagram {
+  id: string
+  nodes: FlowNode[]
+  edges: FlowEdge[]
+  title: string
+  description: string
+}
+
+// Legacy interfaces for backward compatibility
 export interface Node {
   id: string
   type: NodeType
@@ -19,15 +45,6 @@ export interface Node {
   description?: string
   position: { x: number; y: number }
   configuration?: Record<string, unknown>
-}
-
-// Flow diagram data
-export interface FlowDiagram {
-  id: string
-  nodes: Node[]
-  connections: Connection[]
-  title: string
-  description: string
 }
 
 export interface Connection {

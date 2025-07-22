@@ -78,34 +78,63 @@ export const useDataFlowStore = create<DataFlowStore>((set) => ({
     set({ isLoading: true })
     
     setTimeout(() => {
+      const sourceId = generateId()
+      const transformId = generateId()
+      const destinationId = generateId()
+      
       const flow: FlowDiagram = {
         id: generateId(),
         title: 'Data Flow',
         description: prompt,
         nodes: [
           {
-            id: generateId(),
+            id: sourceId,
             type: 'source',
-            status: 'pending',
-            label: 'Source',
-            position: { x: 100, y: 200 }
+            position: { x: 100, y: 200 },
+            data: {
+              type: 'source',
+              status: 'pending',
+              label: 'Source',
+              description: 'Data source'
+            }
           },
           {
-            id: generateId(),
+            id: transformId,
             type: 'transform',
-            status: 'pending',
-            label: 'Transform',
-            position: { x: 300, y: 200 }
+            position: { x: 300, y: 200 },
+            data: {
+              type: 'transform',
+              status: 'pending',
+              label: 'Transform',
+              description: 'Data transformation'
+            }
           },
           {
-            id: generateId(),
+            id: destinationId,
             type: 'destination',
-            status: 'pending',
-            label: 'Destination',
-            position: { x: 500, y: 200 }
+            position: { x: 500, y: 200 },
+            data: {
+              type: 'destination',
+              status: 'pending',
+              label: 'Destination',
+              description: 'Data destination'
+            }
           }
         ],
-        connections: []
+        edges: [
+          {
+            id: generateId(),
+            source: sourceId,
+            target: transformId,
+            type: 'smoothstep'
+          },
+          {
+            id: generateId(),
+            source: transformId,
+            target: destinationId,
+            type: 'smoothstep'
+          }
+        ]
       }
 
       set((state) => ({
