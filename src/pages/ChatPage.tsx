@@ -3,9 +3,9 @@ import { useNavigate } from 'react-router-dom'
 import { Button } from '@/components/ui/button'
 import { ArrowLeft } from 'lucide-react'
 import { useDataFlowStore } from '@/store/useStore'
-import ChatInterface from '@/components/chat/ChatInterface'
-import Canvas from '@/components/canvas/Canvas'
-import PropertiesPanel from '@/components/canvas/PropertiesPanel'
+import ChatInterface from '../components/chat/ChatInterface'
+import Canvas from '../components/canvas/Canvas'
+import PropertiesPanel from '../components/canvas/PropertiesPanel'
 
 export default function ChatPage() {
   const navigate = useNavigate()
