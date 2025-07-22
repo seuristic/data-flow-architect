@@ -3,7 +3,6 @@ import type { Message, FlowDiagram, Node, AppState } from '@/types'
 import { generateId } from '@/utils'
 
 interface DataFlowStore extends AppState {
-  // Actions
   addMessage: (content: string, type: 'user' | 'ai') => void
   setLoading: (loading: boolean) => void
   setCurrentFlow: (flow: FlowDiagram | null) => void
@@ -15,13 +14,11 @@ interface DataFlowStore extends AppState {
 }
 
 export const useDataFlowStore = create<DataFlowStore>((set) => ({
-  // Initial state
   currentFlow: null,
   messages: [],
   selectedNodeId: null,
   isLoading: false,
 
-  // Actions
   addMessage: (content: string, type: 'user' | 'ai') => {
     const message: Message = {
       id: generateId(),
@@ -74,7 +71,6 @@ export const useDataFlowStore = create<DataFlowStore>((set) => ({
   },
 
   createFlowFromPrompt: (prompt: string) => {
-    // Simulate AI processing and flow creation
     set({ isLoading: true })
     
     setTimeout(() => {

@@ -1,11 +1,9 @@
 import type { ExamplePrompt } from '@/types'
 
-// Generate unique IDs
 export const generateId = (): string => {
   return Math.random().toString(36).substring(2, 15)
 }
 
-// Example prompts for the landing page
 export const examplePrompts: ExamplePrompt[] = [
   {
     id: '1',
@@ -24,16 +22,9 @@ export const examplePrompts: ExamplePrompt[] = [
     title: 'Get PostgreSQL users and send to a webhook',
     description: 'Extract user data and send to external webhook',
     prompt: 'Get PostgreSQL users and send to a webhook'
-  },
-  {
-    id: '4',
-    title: 'Analyze Stripe payments in Google Sheets',
-    description: 'Real-time payment data analysis in spreadsheets',
-    prompt: 'Analyze Stripe payments in Google Sheets'
   }
 ]
 
-// Node type colors for styling
 export const getNodeTypeColor = (type: 'source' | 'transform' | 'destination'): string => {
   switch (type) {
     case 'source':
@@ -47,7 +38,6 @@ export const getNodeTypeColor = (type: 'source' | 'transform' | 'destination'): 
   }
 }
 
-// Node status colors
 export const getNodeStatusColor = (status: 'pending' | 'partial' | 'complete' | 'error'): string => {
   switch (status) {
     case 'pending':
@@ -63,7 +53,6 @@ export const getNodeStatusColor = (status: 'pending' | 'partial' | 'complete' | 
   }
 }
 
-// Format timestamp for messages
 export const formatTimestamp = (date: Date): string => {
   return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
 } 

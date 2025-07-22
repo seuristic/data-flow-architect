@@ -11,14 +11,14 @@ import nexlaLogo from '@/assets/Nexla_Icon_Blue_RGB.png'
 
 export default function ChatPage() {
   const navigate = useNavigate()
-  const { currentFlow, messages } = useDataFlowStore()
+  const { isLoading, currentFlow, messages } = useDataFlowStore()
   const { theme, toggleTheme } = useTheme()
 
   useEffect(() => {
-    if (!currentFlow && messages.length === 0) {
+    if (!isLoading && !currentFlow && messages.length === 0) {
       navigate('/')
     }
-  }, [currentFlow, messages, navigate])
+  }, [isLoading, currentFlow, messages, navigate])
 
   return (
     <div className="h-screen flex flex-col bg-gray-50 dark:bg-gray-900">
